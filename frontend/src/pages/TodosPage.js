@@ -30,8 +30,7 @@ const TodosPage = () => {
 
   const handleEdit = async (id, updatedData) => {
     try {
-      const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-      const token = userInfo?.token;
+      const token = user;
 
       if (!token) {
         throw new Error("No token found");
@@ -73,8 +72,7 @@ const TodosPage = () => {
 
   const handleDelete = async (id) => {
     try {
-      const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-      const token = userInfo?.token;
+      const token = user;
 
       if (!token) {
         throw new Error("No token found");
@@ -112,11 +110,10 @@ const TodosPage = () => {
   };
   const fetchTodos = async () => {
     try {
-      const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-      console.log(userInfo);
-      const token = userInfo?.token;
-      
-
+     
+     console.log(user)
+      const token = user;
+      console.log(token)
       if (!token) {
         throw new Error("No token found");
       }
@@ -136,7 +133,6 @@ const TodosPage = () => {
       console.error("Error fetching todos:", error);
       toast({
         title: "Error Fetching Todos",
-        description: error.response?.data?.message || error.message,
         status: "error",
         duration: 5000,
         isClosable: true,
@@ -153,8 +149,7 @@ const TodosPage = () => {
 
     const handleAddTodo = async () => {
       try {
-        const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-        const token = userInfo?.token;
+        const token = user;
 
         if (!token) {
           throw new Error("No token found");

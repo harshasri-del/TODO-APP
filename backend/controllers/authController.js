@@ -19,11 +19,7 @@ const registerUser = asyncHandler(async (req, res) => {
   });
   if (user) {
     res.status(201).json({
-      _id: user._id,
-      username: username,
-      password: password,
       token: generateToken(user._id),
-      message: "Registed successfully!!",
     });
   } else {
     res.status(400);
@@ -40,10 +36,7 @@ const loginUser = asyncHandler(async (req, res) => {
   const user = await User.findOne({ username });
   if (user && (await user.matchPassword(password))) {
     res.status(200).json({
-      _id: user._id,
-      username: user.username,
       token: generateToken(user._id),
-      message: "Logged In successfully!!",
     });
   } else {
     res.status(401);

@@ -11,10 +11,12 @@ import {
 import Login from "../components/Authentication/Login";
 import { useNavigate } from "react-router-dom";
 import Signup from "../components/Authentication/SignUp";
+import { useTodo } from "../components/context/TodoContext";
 
 const Homepage = () => {
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("userInfo"));
+  const {user} = useTodo()
+
   if (user) {
     navigate("/todos");
   }

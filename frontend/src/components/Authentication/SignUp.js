@@ -47,12 +47,13 @@ const Signup = () => {
         },
       };
 
-      const data = await axios.post(
+      const {data} = await axios.post(
         "/api/register",
         { username, password },
         config
       );
-      console.log(data);
+      const { token } = data;
+      
       toast({
         title: "Registration is Successful",
         status: "success",
@@ -60,8 +61,8 @@ const Signup = () => {
         isClosable: true,
         position: "bottom",
       });
-     
-      localStorage.setItem("userInfo", JSON.stringify(data));
+     console.log(token)
+      localStorage.setItem("userInfo", token);
       setLoading(false);
       navigate("/todos");
     } catch (error) {

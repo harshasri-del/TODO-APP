@@ -43,12 +43,14 @@ const Login = () => {
           "Content-type": "application/json",
         },
       };
+      
 
       const { data } = await axios.post(
         "/api/login",
         { username, password },
         config
       );
+      const { token } = data;
       toast({
         title: "Login Successful",
         status: "success",
@@ -58,7 +60,7 @@ const Login = () => {
       });
     
 
-      localStorage.setItem("userInfo", JSON.stringify(data));
+      localStorage.setItem("userInfo", token);
       setLoading(false);
       navigate("/todos");
     } catch (error) {
